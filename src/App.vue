@@ -1,41 +1,16 @@
 <template>
   <div>
-    <div v-if="error">error = {{error}}</div>
-    <Suspense v-else>
-      <template #default>
-        <div>
-          <User />
-          <User2 />
-        </div>
-      </template>
-      <template #fallback>
-        <span>Loading . . .</span>
-      </template>
-    </Suspense>
+    <SuspenseComp />
   </div>
 </template>
 
 <script>
-import { onErrorCaptured, ref } from 'vue';
-import User from './components/UserComp.vue';
-import User2 from './components/UserComp2.vue';
+import SuspenseComp from './components/Suspense/index.vue';
 
 export default {
   name: 'App',
-  components: {
-    User,
-    User2,
-  },
-  setup(){
-    const error = ref(null)
-
-    onErrorCaptured((e) => {
-      error.value = e
-      return true
-    })
-
-    return {error}
-  }
+  components: {SuspenseComp},
+  setup(){}
 }
 </script>
 
