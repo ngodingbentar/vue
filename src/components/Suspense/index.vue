@@ -21,7 +21,7 @@ import User from './UserComp.vue';
 import User2 from './UserComp2.vue';
 
 export default {
-  name: 'Suspense',
+  name: 'SuspenseComp',
   components: {
     User,
     User2,
