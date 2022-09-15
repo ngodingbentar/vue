@@ -5,6 +5,7 @@
       <router-link to="/about">About</router-link>
       <router-link to="/posts">Posts</router-link>
       <router-link :to="{name: 'Contact'}">Contact</router-link>
+      <button @click="logout">logout</button>
     </nav>
 
     <router-view />
@@ -12,11 +13,17 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'DashboardPage',
   setup() {
-    return {}
+    const router = useRouter()
+    const logout = () => {
+      localStorage.removeItem('isAuth')
+      router.push({ name: 'Login' })
+    }
+    return { logout }
   },
 }
 </script>

@@ -42,7 +42,10 @@ const routes = [
       {
         path: "post/:id",
         name: "Post",
-        component: PostVue
+        component: PostVue,
+        beforeEnter: (to, from) => {
+          console.log('beforeEnter', to, from);
+        }
       }
     ]
   },
@@ -50,7 +53,17 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+})
+
+router.beforeEach((to, from, next) => {
+  // console.log('to', to)
+  // console.log('from', from)
+  const isAuth = JSON.parse(localStorage.getItem('isAuth'))
+  if (to.name !== 'Login' && !isAuth) next({ name: 'Login' })
+  if (to.name === 'Login' && isAuth) next({ name: 'Home' })
+  else next()
+
 })
 
 export default router

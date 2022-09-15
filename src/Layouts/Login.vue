@@ -19,6 +19,7 @@ export default {
   setup() {
     const router = useRouter()
     const login = () => {
+      localStorage.setItem('isAuth', true)
       router.push({ name: 'Home' })
     }
 
