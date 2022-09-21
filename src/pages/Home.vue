@@ -4,6 +4,7 @@
     <VmodelComp />
     <p>likes : {{likes}}</p>
     <p>usernmae : {{username}}</p>
+    <pre> user : {{user}}</pre>
   </div>
 </template>
 
@@ -24,7 +25,11 @@ import VmodelComp from '../components/Vmodel/index.vue';
         return store.state.username
       })
 
-      return { likes, username}
+      const user = computed(() => {
+        return store.state.user
+      })
+
+      return { likes, username, user}
       
     },
   }
