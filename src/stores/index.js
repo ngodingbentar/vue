@@ -8,6 +8,11 @@ export const store = createStore({
       user      : null,
     };
   },
+  getters: {
+    fakeTotalLikes(state) {
+      return state.totalLikes + 10;
+    }
+  },
   mutations: {
     incrementLikes(state) {
       state.totalLikes++;
