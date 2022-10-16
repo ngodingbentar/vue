@@ -3,7 +3,7 @@ import { createStore } from "vuex";
 export const store = createStore({
   state() {
     return {
-      totalLikes: 0,
+      totalLikes: 1,
       username  : '',
       user      : null,
     };
@@ -26,7 +26,7 @@ export const store = createStore({
   },
   actions: {
     async getUser({ commit }) {
-      const response = await fetch('https://jsonplaceholder.typicode.com/users/1');
+      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${this.state.totalLikes}`);
       const data = await response.json();
       commit('setUser', data);
     }

@@ -5,13 +5,19 @@
     <p>likes : {{likes}}</p>
     <p>fake likes : {{fakeTotalLikes}}</p>
     <p>usernmae : {{username}}</p>
+
+    <div>
+      <button @click="incrementLikes">incrementLikes</button>
+      <button @click="setUsername('dew')">setUsername</button>
+      <button @click="getUser">getUser</button>
+    </div>
     <pre> user : {{user}}</pre>
   </div>
 </template>
 
 <script>
 // import { computed } from 'vue'
-import { mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import SuspenseComp from '../components/Suspense/index.vue';
 import VmodelComp from '../components/Vmodel/index.vue';
   export default {
@@ -39,6 +45,10 @@ import VmodelComp from '../components/Vmodel/index.vue';
       ...mapState(["username", "user"]),
       ...mapState({ likes: 'totalLikes' }),
       ...mapGetters(["fakeTotalLikes"])
+    },
+    methods: {
+      ...mapMutations(['incrementLikes', 'setUsername', 'setUser']),
+      ...mapActions(['getUser'])
     }
   }
 </script>
