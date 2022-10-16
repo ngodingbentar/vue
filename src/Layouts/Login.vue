@@ -24,8 +24,8 @@ export default {
     const username = ref('')
     const login = () => {
       localStorage.setItem('isAuth', true)
-      store.commit('setUsername', username.value)
-      store.dispatch('getUser')
+      store.commit('user/setUsername', username.value)
+      store.dispatch('user/getUser')
       router.push({ name: 'Home' })
     }
 

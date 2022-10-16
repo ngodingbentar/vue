@@ -42,13 +42,24 @@ import VmodelComp from '../components/Vmodel/index.vue';
     //   return { likes, fakeLikes, username, user}
     // },
     computed: {
-      ...mapState(["username", "user"]),
-      ...mapState({ likes: 'totalLikes' }),
-      ...mapGetters(["fakeTotalLikes"])
+      ...mapState({
+        username: state => state.user.username,
+        user: state => state.user.user,
+        likes: state => state.post.totalLikes,
+      }),
+      ...mapGetters({
+        fakeTotalLikes: "post/fakeTotalLikes"
+      })
     },
     methods: {
-      ...mapMutations(['incrementLikes', 'setUsername', 'setUser']),
-      ...mapActions(['getUser'])
+      ...mapMutations({
+        incrementLikes: 'post/incrementLikes',
+        setUsername: 'user/setUsername',
+        setUser: 'user/setUser',
+      }),
+      ...mapActions({
+        getUser: 'user/getUser'
+      })
     }
   }
 </script>

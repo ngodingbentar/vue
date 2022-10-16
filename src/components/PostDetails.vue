@@ -32,7 +32,7 @@ export default {
     data.body = post.body
 
     const doLike = () => {
-      store.commit('incrementLikes')
+      store.commit('post/incrementLikes')
     }
 
     return { ...toRefs(data), doLike}
