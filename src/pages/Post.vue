@@ -12,11 +12,6 @@
   </div>
 </template>
 
-<script>
+<script setup>
   import PostDetails from '@/components/PostDetails.vue';
-
-export default {
-  name: 'PostsPage',
-  components: { PostDetails }
-}
 </script>

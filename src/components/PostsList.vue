@@ -1,26 +1,30 @@
 <template>
-  <ul v-for="(list, index) in lists" :key="index">
-    <li>
-      <router-link :to="`/post/${list.id}`">{{list.title}}</router-link>
-    </li>
-  </ul>
+  <div>
+    <pre>{{props.text}}</pre>
+    <button @click="emit('changeProps', 'ganti props')">change props</button>
+    <ul v-for="(list, index) in lists" :key="index">
+      <li>
+        <router-link :to="`/post/${list.id}`">{{list.title}}</router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 
-<script>
-import { reactive, toRefs } from 'vue'
+<script setup>
+import { reactive, defineProps, defineEmits } from 'vue'
+const data = reactive({
+  lists: [],
+})
+const props = defineProps({
+  text: {
+    type: String,
+    default: 'Hello World'
+  },
+})
 
-  export default {
-    async setup() {
-      const data = reactive({
-        lists: [],
-      })
+const emit = defineEmits(['changeProps'])
 
-      const result = await fetch('https://jsonplaceholder.typicode.com/posts')
-      // console.log('result', result.json())
-      data.lists = await result.json()
-      console.log('lists', data)
-
-      return { ...toRefs(data)}
-    }
-  }
+const result = await fetch('https://jsonplaceholder.typicode.com/posts')
+data.lists = await result.json()
+const lists = data.lists
 </script>

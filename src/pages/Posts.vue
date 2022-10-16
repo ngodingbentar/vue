@@ -1,9 +1,8 @@
 <template>
   <div>
-    <p>Post lists</p>
     <Suspense>
       <template #default>
-        <PostsList />
+        <PostsList :text="text" @changeProps="changeProps" />
       </template>
       <template #fallback>
         Loading...
@@ -12,11 +11,12 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import PostsList from '@/components/PostsList.vue';
-
-export default {
-  name: 'PostsPage',
-  components: { PostsList }
+import {ref} from 'vue';
+const text = ref("hah apa")
+const changeProps = value => {
+  console.log('change props', value);
+  text.value = value;
 }
 </script>

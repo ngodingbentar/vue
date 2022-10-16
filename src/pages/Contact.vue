@@ -5,18 +5,10 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { useStore } from 'vuex'
-
-export default {
-  name: 'ContactPage',
-  setup() {
-    const store = useStore()
-    const doLike = () => {
-      store.commit('incrementLikes')
-    }
-
-    return { doLike}
-  },
+const store = useStore()
+const doLike = () => {
+  store.commit('incrementLikes')
 }
 </script>

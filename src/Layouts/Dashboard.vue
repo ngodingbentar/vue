@@ -12,18 +12,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { useRouter } from 'vue-router'
-
-export default {
-  name: 'DashboardPage',
-  setup() {
-    const router = useRouter()
-    const logout = () => {
-      localStorage.removeItem('isAuth')
-      router.push({ name: 'Login' })
-    }
-    return { logout }
-  },
+const router = useRouter()
+const logout = () => {
+  localStorage.removeItem('isAuth')
+  router.push({ name: 'Login' })
 }
 </script>

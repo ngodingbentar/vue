@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h3>{{title}}</h3>
-    <p>{{body}}</p>
+    <h3>{{data.title}}</h3>
+    <p>{{data.body}}</p>
 
     <div>
       <button @click="doLike">Love</button>
@@ -9,14 +9,11 @@
   </div>
 </template>
 
-<script>
-import { reactive, toRefs } from 'vue'
+<script setup>
+import { reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
-export default {
-  name: 'PostDetails',
-  async setup() {
     const data = reactive({
       title: '',
       body: '',
@@ -34,8 +31,4 @@ export default {
     const doLike = () => {
       store.commit('post/incrementLikes')
     }
-
-    return { ...toRefs(data), doLike}
-  }
-}
 </script>
